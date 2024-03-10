@@ -24,3 +24,6 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
+
+Route::apiResource('item', 'ItemController')->except(['store', 'update']);
+Route::apiResource('item', 'ItemController')->only(['store', 'update'])->middleware('auth:sanctum');
